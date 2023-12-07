@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TextField, Button, Typography, Paper } from "@material-ui/core";
+import { TextField, Button, Typography, Paper } from "@mui/material";
 import useStyles from "./style";
 import FileBase from "react-file-base64";
 import { createPost, updatePost } from "../../actions/posts";
