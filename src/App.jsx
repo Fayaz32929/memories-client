@@ -6,7 +6,6 @@ import Form from "./components/Form/Form";
 import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { getPosts } from "./actions/posts";
-import Card from "./card";
 
 export default function App() {
  const [currentId, setCurrentId] = useState();
