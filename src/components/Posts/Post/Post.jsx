@@ -1,65 +1,77 @@
 import React from "react";
-import useStyles from "./styles";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@mui/material";
-import { ThumbUpAlt, Delete, MoreHoriz } from "@mui/icons-material";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
+import Card from "@mui/material/Card";
+import CardHeader from "@mui/material/CardHeader";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Avatar from "@mui/material/Avatar";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+// import IconButton, { IconButtonProps } from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import { red } from "@mui/material/colors";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { IconButton } from "@mui/material";
 
 export default function Post({ post, setCurrentId }) {
- const classes = useStyles();
  const dispatch = useDispatch();
+
+ const postTime = moment(post.createdAt).fromNow();
+
  return (
-  <Card className={classes.card}>
-   <CardMedia className={classes.media} image={post.selectedFile} title={post.title} />
-   <div className={classes.overlay}>
-    <Typography variant="h6">{post.creater}</Typography>
-    <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
-   </div>
-   <div className={classes.overlay2}>
-    <Button
-     style={{ color: "white" }}
-     size="small"
-     onClick={() => {
-      setCurrentId(post._id);
-     }}
-    >
-     <MoreHoriz fontSize="medium" />
-    </Button>
-   </div>
-   <div className={classes.details}>
-    <Typography variant="body2" color="textSecondary">
-     {post.tags.map((tag) => `#${tag} `)}
-    </Typography>
-   </div>
-   <Typography className={classes.title} variant="h5" gutterBottom>
-    {post.title}
-   </Typography>
+  <Card sx={{ maxWidth: 345 }}>
+   <CardHeader
+    avatar={
+     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+      R
+     </Avatar>
+    }
+    action={
+     <button
+      onClick={() => {
+       setCurrentId(post._id);
+      }}
+      aria-label="settings"
+     >
+      <MoreVertIcon />
+     </button>
+    }
+    title={post.creater}
+    subheader={postTime}
+   />
+   <CardMedia component="img" height="194" image={post.selectedFile} />
    <CardContent>
-    <Typography variant="body2" color="textSecondary" component="p">
+    <Typography className="pt-2" variant="body2" color="text.secondary">
+     {post.tags.map((tag) => ` #${tag} `)}
+    </Typography>
+    <Typography className="pt-2" variant="h5" color="text.primary">
+     {post.title}
+    </Typography>
+    <Typography className="pt-2" variant="body2" color="text.secondary">
      {post.message}
     </Typography>
    </CardContent>
-   <CardActions className={classes.cardActions}>
-    <Button
-     size="small"
-     color="primary"
+   <CardActions className="flex justify-between px-4" disableSpacing>
+    <IconButton
      onClick={() => {
       dispatch(likePost(post._id));
      }}
+     aria-label="add to favorites"
     >
-     <ThumbUpAlt fontSize="small" />
-     &nbsp; Like &nbsp;{post.likeCount}
-    </Button>
-    <Button
-     size="small"
-     color="primary"
+     <FavoriteIcon />
+     {post.likeCount}
+    </IconButton>
+    <button
      onClick={() => {
       dispatch(deletePost(post._id));
      }}
     >
-     <Delete /> Delete
-    </Button>
+     <DeleteOutlineIcon />
+     Delete
+    </button>
    </CardActions>
   </Card>
  );
