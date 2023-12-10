@@ -22,7 +22,7 @@ export default function App() {
      <img className="max-w-none " width="60" src={memories} />
     </nav>
     <div className="block  sm:flex sm:flex-row-reverse">
-     <div className="basis-full sm:basis-1/3 lg:basis-1/4">
+     <div className="flex justify-center basis-full sm:basis-1/3 lg:basis-1/4">
       <Form currentId={currentId} />
      </div>
      <div className="basis-full sm:basis-2/3 lg:basis-3/4">

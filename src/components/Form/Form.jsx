@@ -53,7 +53,7 @@ export default function Form({ currentId, setCurrentId }) {
  };
  return (
   <>
-   <form onSubmit={handleSubmit} className="bg-white flex flex-wrap gap-4 justify-center p-3">
+   <form className="bg-white flex flex-wrap gap-4 justify-center p-3">
     <h2 className="font-medium text-lg">{currentId ? "Editing" : "Creating"} a Memory</h2>
     <TextField
      className="w-11/12"
@@ -111,7 +111,7 @@ export default function Form({ currentId, setCurrentId }) {
       )}
      </div>
     </div>
-    <Button type="submit" variant="contained" fullWidth size="large">
+    <Button type="submit" variant="contained" onClick={handleSubmit} fullWidth size="large">
      Submit
     </Button>
     <Button onClick={clear} type="submit" fullWidth color="error" size="small" variant="outlined">
