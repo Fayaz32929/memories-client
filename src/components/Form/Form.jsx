@@ -20,6 +20,7 @@ export default function Form({ currentId, setCurrentId }) {
 
   if (currentId) {
    dispatch(updatePost(currentId, postData));
+   setCurrentId();
   } else {
    dispatch(createPost(postData));
   }
