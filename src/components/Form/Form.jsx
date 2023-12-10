@@ -54,7 +54,7 @@ export default function Form({ currentId, setCurrentId }) {
  };
  return (
   <>
-   <form className="bg-white flex flex-wrap gap-4 justify-center p-3">
+   <form className="bg-white flex max-w-md flex-wrap gap-4 justify-center p-3">
     <h2 className="font-medium text-lg">{currentId ? "Editing" : "Creating"} a Memory</h2>
     <TextField
      className="w-11/12"
